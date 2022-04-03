@@ -41,18 +41,19 @@ class Client {
                     data = JSON.parse(data);
                     if(data.errors){
                         data.errors.forEach(err =>{
-                            console.log(`Error: ${err.message}`);
                             reject(new Error(err.message));
                         });
                     }
+                    const title = data.data.site.config.title;
+                    if(!title) reject(new Error("INVALID_RESPONSE"));
                     this.ready = true;
-                    console.log("Success!");
-                    resolve(`${data.data.site.config.title}`); //Return the title to verify "connection".
+                    console.log(`Success! ${title}`);//Remove after resolving works.
+                    resolve(title); //Return the title to verify "connection".
                 });
             });
             request.end();
             setTimeout(()=>{ //Time out the request in case it hangs.
-                reject(new Error("Exceeded timeout of 20s."));
+                reject(new Error("TIMEOUT_EXCEEDED"));
             },20000);
         });
     }
