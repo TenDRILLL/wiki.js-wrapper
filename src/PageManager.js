@@ -26,6 +26,30 @@ class PageManager{
             request.end();
         });
     }
+
+    search(searchQuery, path, locale){
+        return new Promise((resolve, reject)=>{
+            const options = this.client.getOptions(`?query={pages{search(query:"${searchQuery}"${path ? `,path:"${path}"` : ""}${locale ? `,locale:"${locale}"` : ""}){results{id,title,description,path,locale},suggestions,totalHits}}}`);
+            const request = this.client.httpModule.get(options, res=>{
+                let data = "";
+                res.on("data", chunk=>{
+                    data += chunk;
+                });
+                res.on("end",()=>{
+                    data = JSON.parse(data);
+                    if(data.errors?.length > 0){
+                        reject(new Error(data.errors[0].message));
+                    }
+                    if(data.data.pages.search){
+                        resolve(data.data.pages.search);
+                    } else {
+                        reject("INVALID_RESPONSE");
+                    }
+                });
+            });
+            request.end();
+        });
+    }
 }
 
 module.exports = PageManager;
