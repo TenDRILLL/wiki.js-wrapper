@@ -19,14 +19,14 @@ class Client {
         return this.ready;
     }
 
-     login(){
+    login(){
         return new Promise((resolve,reject)=>{
-            if(this.requestOptions === undefined) this.setOptions(`${this.baseURL}?query={site{config{title}}}`); //Get the title of wiki.js site as a test that token and url are valid.
-            const httpModule = this.requestOptions.port === 443 ? https : http; //This is used to account for both http and https.
-            const request = httpModule.get(this.requestOptions, res=>{
+            if(this.requestOptions === undefined) this.requestOptions = this.getOptions("?query={site{config{title}}}"); //Get the title of wiki.js site as a test that token and url are valid.
+            const request = this.httpModule.get(this.requestOptions, res=>{
                 if(res.statusCode > 300 && res.statusCode < 400){
                     if(res.headers.location){ //If the request results in a redirect, execute again.
-                        this.setOptions(res.headers.location);
+                        this.baseURL = res.headers.location;
+                        this.requestOptions = this.getOptions();
                         return resolve(this.login());
                     } else {
                         reject(new Error("INVALID_BASEURL"));
@@ -54,13 +54,15 @@ class Client {
         });
     }
 
-    setOptions(url = this.baseURL){
+    getOptions(query){
+        let url = this.baseURL;
         url = url.split("://");
         const port = url.shift() === "https" ? 443 : 80;
+        this.httpModule = port === 443 ? require("https") : require("http");
         url = url.join("").split("/");
         const host = url[0];
-        const path = `/${url[1]}`;
-        this.requestOptions = {
+        const path = `/${url[1]}${query ?? ""}`;
+        return {
             host,
             port,
             path,
