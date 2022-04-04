@@ -54,7 +54,7 @@ class Client {
         });
     }
 
-    async setOptions(url = this.baseURL){
+    setOptions(url = this.baseURL){
         url = url.split("://");
         const port = url.shift() === "https" ? 443 : 80;
         url = url.join("").split("/");
