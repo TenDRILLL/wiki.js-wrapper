@@ -39,10 +39,8 @@ class Client {
                 });
                 res.on("end",()=>{
                     data = JSON.parse(data);
-                    if(data.errors){
-                        data.errors.forEach(err =>{
-                            reject(new Error(err.message));
-                        });
+                    if(data.errors?.length > 0){
+                        reject(new Error(data.errors[0].message));
                     }
                     const title = data.data.site.config.title;
                     if(!title) reject(new Error("INVALID_RESPONSE"));
