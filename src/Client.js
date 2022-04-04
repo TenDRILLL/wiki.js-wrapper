@@ -10,10 +10,9 @@ class Client {
     _validateParameters(params){
         if(!params.token || typeof params.token !== "string") throw new Error('INVALID_TOKEN');
         this.token = params.token;
-        //TODO: Check token with regex.
         if(!params.baseURL || typeof params.baseURL !== "string") throw new Error('INVALID_BASEURL');
+        if(!params.baseURL.match(/^(http:\/\/|https:\/\/)/ig)) throw new Error('INVALID_BASEURL_PROTOCOL');
         this.baseURL = params.baseURL;
-        //TODO: Check url with regex.
     }
 
     isReady(){
@@ -42,7 +41,7 @@ class Client {
                     if(data.errors?.length > 0){
                         reject(new Error(data.errors[0].message));
                     }
-                    const title = data.data.site.config.title;
+                    const title = data.data?.site?.config?.title;
                     if(!title) reject(new Error("INVALID_RESPONSE"));
                     this.ready = true;
                     resolve(title); //Return the title to verify "connection".
