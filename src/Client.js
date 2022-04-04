@@ -1,5 +1,4 @@
-const http = require("http");
-const https = require("https");
+const pageManager = require("./PageManager");
 
 class Client {
     constructor(params){
@@ -43,7 +42,7 @@ class Client {
                     }
                     const title = data.data?.site?.config?.title;
                     if(!title) reject(new Error("INVALID_RESPONSE"));
-                    this.ready = true;
+                    this._ready();
                     resolve(title); //Return the title to verify "connection".
                 });
             });
@@ -72,6 +71,11 @@ class Client {
                 "Content-Type": "application/json"
             }
         };
+    }
+
+    _ready(){
+        this.ready = true;
+        this.pages = new pageManager(this);
     }
 }
 
