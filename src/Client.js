@@ -28,7 +28,7 @@ class Client {
                 if(res.statusCode > 300 && res.statusCode < 400){
                     if(res.headers.location){ //If the request results in a redirect, execute again.
                         this.setOptions(res.headers.location);
-                        return this.login();
+                        return resolve(this.login());
                     } else {
                         reject(new Error("INVALID_BASEURL"));
                     }
@@ -45,7 +45,6 @@ class Client {
                     const title = data.data.site.config.title;
                     if(!title) reject(new Error("INVALID_RESPONSE"));
                     this.ready = true;
-                    console.log(`Success! ${title}`);//Remove after resolving works.
                     resolve(title); //Return the title to verify "connection".
                 });
             });
