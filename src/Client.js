@@ -20,7 +20,7 @@ class Client {
         return this.ready;
     }
 
-    async login(){
+     login(){
         return new Promise((resolve,reject)=>{
             if(this.requestOptions === undefined) this.setOptions(`${this.baseURL}?query={site{config{title}}}`); //Get the title of wiki.js site as a test that token and url are valid.
             const httpModule = this.requestOptions.port === 443 ? https : http; //This is used to account for both http and https.
