@@ -5,6 +5,7 @@ class PageManager{
 
     get(id){
         return new Promise((resolve, reject)=>{
+            if(!this.client.isReady()) reject("CLIENT_NOT_READY");
             const options = this.client.getOptions(`?query={pages{single(id:${id}){id,path,hash,title,description,isPrivate,isPublished,privateNS,publishStartDate,publishEndDate,tags{id,tag,title,createdAt,updatedAt},content,render,contentType,createdAt,updatedAt,editor,locale,scriptCss,scriptJs,authorId,authorName,authorEmail,creatorId,creatorName,creatorEmail}}}`);
             const request = this.client.httpModule.get(options, res=>{
                 let data = "";
@@ -29,6 +30,7 @@ class PageManager{
 
     search(searchQuery, path, locale){
         return new Promise((resolve, reject)=>{
+            if(!this.client.isReady()) reject("CLIENT_NOT_READY");
             const options = this.client.getOptions(`?query={pages{search(query:"${searchQuery}"${path ? `,path:"${path}"` : ""}${locale ? `,locale:"${locale}"` : ""}){results{id,title,description,path,locale},suggestions,totalHits}}}`);
             const request = this.client.httpModule.get(options, res=>{
                 let data = "";
