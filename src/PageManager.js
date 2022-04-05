@@ -1,3 +1,4 @@
+const Queries = require("./Queries");
 class PageManager{
     constructor(client) {
         this.client = client;
@@ -6,7 +7,7 @@ class PageManager{
     get(id){
         return new Promise((resolve,reject)=> {
             if(!this.client.isReady()) reject(new Error("CLIENT_NOT_READY"));
-            this.client.APIRequest.req(`?query={pages{single(id:${id}){id,path,hash,title,description,isPrivate,isPublished,privateNS,publishStartDate,publishEndDate,tags{id,tag,title,createdAt,updatedAt},content,render,contentType,createdAt,updatedAt,editor,locale,scriptCss,scriptJs,authorId,authorName,authorEmail,creatorId,creatorName,creatorEmail}}}`).then(data => {
+            this.client.APIRequest.req(Queries.SinglePageQuery(id)).then(data => {
                 if(data.data.pages.single.id){
                     resolve(data.data.pages.single);
                 } else {
@@ -32,7 +33,7 @@ class PageManager{
             } else {
                 reject(new Error("INVALID_SEARCHQUERY"));
             }
-            this.client.APIRequest.req(`?query={pages{search(query:"${searchQuery}"${path ? `,path:"${path}"` : ""}${locale ? `,locale:"${locale}"` : ""}){results{id,title,description,path,locale},suggestions,totalHits}}}`).then(data => {
+            this.client.APIRequest.req(Queries.SearchPageQuery(searchQuery,path,locale)).then(data => {
                 if(data.data.pages.search){
                     resolve(data.data.pages.search);
                 } else {
