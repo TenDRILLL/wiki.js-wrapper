@@ -18,9 +18,20 @@ class PageManager{
         });
     }
 
-    search(searchQuery, path, locale){
+    search(search){
         return new Promise((resolve, reject)=>{
             if(!this.client.isReady()) reject(new Error("CLIENT_NOT_READY"));
+            if(!search) reject(new Error("NO_SEARCHQUERY"));
+            let searchQuery, path, locale;
+            if(typeof search === "string"){
+                searchQuery = search;
+            } else if(typeof search === "object"){
+                searchQuery = search.query ?? undefined;
+                path = search.path ?? undefined;
+                locale = search.locale ?? undefined;
+            } else {
+                reject(new Error("INVALID_SEARCHQUERY"));
+            }
             this.client.APIRequest.req(`?query={pages{search(query:"${searchQuery}"${path ? `,path:"${path}"` : ""}${locale ? `,locale:"${locale}"` : ""}){results{id,title,description,path,locale},suggestions,totalHits}}}`).then(data => {
                 if(data.data.pages.search){
                     resolve(data.data.pages.search);
