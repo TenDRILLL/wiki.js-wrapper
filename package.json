@@ -1,6 +1,6 @@
 {
   "name": "wiki.js-wrapper",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A wrapper for the Wiki.js API (GraphQL).",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,7 @@
     "wrapper"
   ],
   "author": "Ten#0010",
+  "main": "index.js",
   "bugs": {
     "url": "https://github.com/TenDRILLL/wiki.js-wrapper/issues"
   },
