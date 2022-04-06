@@ -40,7 +40,7 @@ client.login().then((title)=>{
  - Returns `PageManager`
  - Used to access methods related to pages.
 
-**PageManager(Client)**
+**PageManager( Client )**
  - Params: Client
  - Contains page-related methods. 
 
