@@ -60,7 +60,7 @@ client.login().then((title)=>{
  - Returns `Promise <PageSearchReponse>`
  - A more specific method to search for a page.
 
-###Structures
+### Structures
 
 **PageObject**
 
