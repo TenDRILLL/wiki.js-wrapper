@@ -3,6 +3,27 @@ A wrapper for the Wiki.js API (GraphQL).
 
 ## Documentation
 
+### Example
+```js
+const {Client} = require("wiki.js-wrapper");
+const options = {
+    baseURL: "http://example.com/graphql",
+    token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOjEsImdycCI6MSwiaWF0IjoxNjQ5MjAzMjAwLCJleHAiOjE2ODA3MzkyMDAsImF1ZCI6InVybjp3aWtpLmpzIiwiaXNzIjoidXJuOndpa2kuanMiLCJ0eXBlIjoiZmFrZS1hc3MtdG9rZW4ifQ.FEWmrlsNrmbf9ESIgOhECNB_N9wRofUbM6UYLGpUrlw"
+}
+const client = new Client(options);
+
+client.login().then((title)=>{
+    console.log(`Connected to ${title}.`);
+    client.pages.get(1).then(page => {
+        console.log(page);
+    }).catch(e => {
+        console.log(e);
+    });
+}).catch(e => {
+    console.log(e);
+});
+```
+
 ### Classes and Methods
 
 **Client( { baseURL, token } )**
