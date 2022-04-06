@@ -9,7 +9,7 @@ class Client {
         this.APIRequest = new APIRequest(this);
     }
 
-    _validateParameters(params){
+    _validateParameters(params = {}){
         if(!params.token || typeof params.token !== "string") throw new Error('INVALID_TOKEN');
         this.token = params.token;
         if(!params.baseURL || typeof params.baseURL !== "string") throw new Error('INVALID_BASEURL');
