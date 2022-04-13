@@ -3,7 +3,7 @@
   "version": "0.2.3",
   "description": "A wrapper for the Wiki.js API (GraphQL).",
   "scripts": {
-    "test": "jest ./test.js"
+    "test": "jest ./test.js --detectOpenHandles"
   },
   "repository": {
     "type": "git",
