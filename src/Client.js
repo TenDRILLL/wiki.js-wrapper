@@ -31,7 +31,7 @@ class Client {
                     reject(new Error("INVALID_RESPONSE"));
                 }
             }).catch(e => {
-                reject(new Error(e));
+                reject(e);
             });
         });
     }
