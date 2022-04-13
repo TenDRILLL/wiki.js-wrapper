@@ -5,7 +5,8 @@ class APIRequest{
 
     req(query){
         return new Promise((resolve,reject)=>{
-            const options = this.getOptions(query);
+            const controller = new AbortController();
+            const options = this.getOptions(query,controller.signal);
             const request = this.httpModule.get(options, res=>{
                 if(res.statusCode > 300 && res.statusCode < 400){
                     if(res.headers.location){
@@ -33,12 +34,13 @@ class APIRequest{
             });
             request.end();
             setTimeout(()=>{
+                controller.abort();
                 reject(new Error("TIMEOUT_EXCEEDED"));
             },20000);
         });
     }
 
-    getOptions(query){
+    getOptions(query,signal){
         let url = this.client.baseURL;
         url = url.split("://");
         const port = url.shift() === "https" ? 443 : 80;
@@ -54,7 +56,8 @@ class APIRequest{
             headers: {
                 "Authorization": `Bearer ${this.client.token}`,
                 "Content-Type": "application/json"
-            }
+            },
+            signal
         };
     }
 
