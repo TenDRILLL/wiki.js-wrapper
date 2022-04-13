@@ -11,6 +11,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Update NodeJS
+        uses: actions/setup-node@v3.1.1
+        with:
+          node-version: 16.x
+        
       - name: Checkout
         uses: actions/checkout@v3
 
