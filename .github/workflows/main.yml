@@ -19,6 +19,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Log Node version
+        run: node -v
+
       - name: Run Jest
         uses: stefanoeb/jest-action@1.0.4
         #with:
