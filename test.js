@@ -35,6 +35,6 @@ describe("Login to the API.", ()=>{
         testOptions.token = "ThisIsAFakeToken";
         testOptions.baseURL = "https://example.com/graphql";
         client = new Client(testOptions);
-        expect(await client.login()).toThrow("Error: Forbidden"); //TODO: FIX, right now only throws Error: Forbidden.
+        await expect(client.login()).rejects.toEqual(Error("Forbidden"));
     });
 });
