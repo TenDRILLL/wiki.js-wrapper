@@ -1,0 +1,21 @@
+name: Tests
+
+on:
+  push:
+    branches: [ uwu ]
+  pull_request:
+    branches: [ uwu ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Jest
+        uses: stefanoeb/jest-action@1.0.4
+        #with:
+          # Args to jest
+          #jestArgs: 
