@@ -15,7 +15,8 @@
     "wrapper"
   ],
   "author": "Ten#0010",
-  "main": "index.js",
+  "main": "src/index.js",
+  "types": "types/index.d.ts",
   "bugs": {
     "url": "https://github.com/TenDRILLL/wiki.js-wrapper/issues"
   },
