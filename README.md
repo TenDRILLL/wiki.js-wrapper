@@ -35,7 +35,7 @@ client.login().then((title)=>{
  - token is your wiki.js website API token, created in the administration section
 
 **Client.login()**
- - Returns `String`, the title of the wiki.js website.
+ - Returns `Promise <String>`, the title of the wiki.js website.
  - Used to verify your baseURL and token, so that they work on the API.
  
 **Client.pages**
