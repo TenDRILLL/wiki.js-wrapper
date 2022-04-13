@@ -52,9 +52,22 @@ interface PageSearchResult {
     path: string;
     locale: string;
 }
+/**
+ * Contains page-related methods.
+ */
 export default class PageManager {
     constructor(client: Client);
+
+    /**
+     * Used to get a page by ID from the wiki.
+     * @param id
+     */
     get(id: number): Promise<PageObject>;
+
+    /**
+     * Search for a page.
+     * @param query
+     */
     search(query: string): Promise<PageSearchResponse>;
     search(options: PageManagerSearchOptions): Promise<PageSearchResponse>;
 }
