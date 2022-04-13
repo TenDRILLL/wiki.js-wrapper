@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/TenDRILLL/wiki.js-wrapper/issues"
   },
-  "homepage": "https://github.com/TenDRILLL/wiki.js-wrapper#readme"
+  "homepage": "https://github.com/TenDRILLL/wiki.js-wrapper#readme",
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nock": "^13.2.4"
+  }
 }
