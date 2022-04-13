@@ -11,19 +11,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Update NodeJS
-        uses: actions/setup-node@v3.1.1
-        with:
-          node-version: 16.x
-        
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Log Node version
-        run: node -v
-
-      - name: Run Jest
-        uses: stefanoeb/jest-action@1.0.4
-        #with:
-          # Args to jest
-          #jestArgs: 
+      - name: Run Test
+        run: |
+          cd /github/workspace/
+          npm i jest nock
+          npm test
