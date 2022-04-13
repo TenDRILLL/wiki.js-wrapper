@@ -1,5 +1,7 @@
 # wiki.js-wrapper
-A wrapper for the Wiki.js API (GraphQL).
+A WIP wrapper for the Wiki.js API (GraphQL).
+
+NPM [wiki.js-wrapper](https://www.npmjs.com/package/wiki.js-wrapper)
 
 ## Documentation
 
