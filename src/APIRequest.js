@@ -8,6 +8,7 @@ class APIRequest{
             const controller = new AbortController();
             const options = this.getOptions(query,controller.signal);
             const request = this.httpModule.get(options, res=>{
+                clearTimeout(timeout);
                 if(res.statusCode > 300 && res.statusCode < 400){
                     if(res.headers.location){
                         this.client.baseURL = res.headers.location;
@@ -27,6 +28,7 @@ class APIRequest{
                         reject(new Error("DATA_NOT_JSON"));
                     }
                     if(data.errors?.length > 0){
+                        clearTimeout(timeout);
                         reject(new Error(data.errors[0].message));
                     }
                     if(data.data){
@@ -37,7 +39,7 @@ class APIRequest{
                 });
             });
             request.end();
-            setTimeout(()=>{
+            const timeout = setTimeout(()=>{
                 controller.abort();
                 reject(new Error("TIMEOUT_EXCEEDED"));
             },20000);
