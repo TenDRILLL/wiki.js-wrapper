@@ -21,8 +21,8 @@ export default class Client {
 
     /**
      * Used to verify your baseURL and token, so that they work on the API.
-     * @returns {String} The title of the wiki.js website.
+     * @returns {Promise<String>} The title of the wiki.js website.
      */
 
-    login(): string;
+    login(): Promise<string>;
 }
