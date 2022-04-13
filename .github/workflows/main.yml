@@ -16,6 +16,6 @@ jobs:
 
       - name: Run Test
         run: |
-          cd /github/workspace/
+          ls
           npm i jest nock
           npm test
