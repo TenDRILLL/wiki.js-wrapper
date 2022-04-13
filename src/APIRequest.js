@@ -21,7 +21,11 @@ class APIRequest{
                     data += chunk;
                 });
                 res.on("end",()=>{
-                    data = JSON.parse(data);
+                    try {
+                        data = JSON.parse(data);
+                    } catch(e){
+                        reject(new Error("DATA_NOT_JSON"));
+                    }
                     if(data.errors?.length > 0){
                         reject(new Error(data.errors[0].message));
                     }
