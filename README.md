@@ -75,14 +75,14 @@ Properties:
 >* isPrivate:BOOLEAN
 >* isPublished:BOOLEAN
 >* privateNS:STRING
->* publishStartDate:DATE
->* publishEndDate:DATE
+>* publishStartDate:STRING (ISO 8601)
+>* publishEndDate:STRING (ISO 8601)
 >* tags:PAGETAG
 >* content:STRING
 >* render:STRING
 >* contentType:STRING
->* createdAt:DATE
->* updatedAt:DATE
+>* createdAt:STRING (ISO 8601)
+>* updatedAt:STRING (ISO 8601)
 >* editor:STRING
 >* locale:STRING
 >* scriptCss:STRING
@@ -100,8 +100,8 @@ Properties:
 >* id:INT
 >* tag:STRING
 >* title:STRING
->* createdAt:DATE
->* updatedAt:DATE
+>* createdAt:STRING (ISO 8601)
+>* updatedAt:STRING (ISO 8601)
 
 **PageSearchResponse**
 
