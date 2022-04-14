@@ -3,7 +3,7 @@ const nock = require("nock");
 describe("Search the API for a page.", ()=>{
     nock("https://example.com")
         .get("/graphql?query={site{config{title}}}")
-        .reply(200,{data: {site: {config: {title: "Example"}}}});
+        .reply(200,{data: {site: {config: {title: "Example"}}}}).persist();
     const Client = require("../src/Client");
     const testOptions = {
         baseURL: "https://example.com/graphql",
