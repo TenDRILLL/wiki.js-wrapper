@@ -1,7 +1,7 @@
 const nock = require("nock");
 
 describe("Login to the API.", ()=>{
-    const Client = require("./src/Client");
+    const Client = require("../src/Client");
     let client;
     const testOptions = {
         baseURL: "https://example.com/graphql",
@@ -9,7 +9,7 @@ describe("Login to the API.", ()=>{
     }
 
     it("Returns Wiki.js website title.", async ()=>{
-        const login = nock("https://example.com")
+        nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200,{data: {site: {config: {title: "Example"}}}});
         client = new Client(testOptions);
@@ -17,10 +17,10 @@ describe("Login to the API.", ()=>{
     });
 
     it("Returns Wiki.js website title after HTTP redirect.", async ()=>{
-        const login = nock("https://example.com")
+        nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200,{data: {site: {config: {title: "Example"}}}});
-        const redirect = nock("http://example.com")
+        nock("http://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(301,{},{location: "https://example.com/graphql?query={site{config{title}}}"});
         testOptions.baseURL = "http://example.com/graphql";
@@ -29,7 +29,7 @@ describe("Login to the API.", ()=>{
     });
 
     it("Fail returning Wiki.js title if token is invalid.", async ()=>{
-        const fail = nock("https://example.com")
+        nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200,{errors: [{message: "Forbidden"}]});
         testOptions.token = "ThisIsAFakeToken";
