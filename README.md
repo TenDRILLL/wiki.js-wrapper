@@ -1,5 +1,5 @@
 # wiki.js-wrapper
-![Tests](https://github.com/TenDRILLL/wiki.js-wrapper/actions/workflows/main.yml/badge.svg)
+![Tests](https://github.com/TenDRILLL/wiki.js-wrapper/workflows/Tests/badge.svg)
 
 A WIP wrapper for the Wiki.js API (GraphQL).
 
