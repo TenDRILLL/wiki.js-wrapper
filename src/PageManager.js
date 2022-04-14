@@ -14,7 +14,7 @@ class PageManager{
                     reject(new Error("INVALID_RESPONSE"));
                 }
             }).catch(e => {
-                reject(new Error(e));
+                reject(e);
             });
         });
     }
@@ -40,7 +40,7 @@ class PageManager{
                     reject(new Error("INVALID_RESPONSE"));
                 }
             }).catch(e => {
-                reject(new Error(e));
+                reject(e);
             });
         });
     }
