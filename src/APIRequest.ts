@@ -1,4 +1,8 @@
+import { Client } from "../types";
+
 class APIRequest {
+    private client: Client;
+    private httpModule: any;
     constructor(client) {
         this.client = client;
     }
@@ -68,4 +72,4 @@ class APIRequest {
     }
 }
 
-module.exports = APIRequest;
+export default APIRequest;

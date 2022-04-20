@@ -2,6 +2,7 @@
   "name": "wiki.js-wrapper",
   "version": "0.2.4",
   "description": "A wrapper for the Wiki.js API (GraphQL).",
+  "type": "module",
   "scripts": {
     "test": "jest __tests__/ --detectOpenHandles"
   },
@@ -15,7 +16,7 @@
     "wrapper"
   ],
   "author": "Ten#0010",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "types": "types/index.d.ts",
   "bugs": {
     "url": "https://github.com/TenDRILLL/wiki.js-wrapper/issues"

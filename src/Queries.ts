@@ -10,4 +10,4 @@ class Queries {
     }
 }
 
-module.exports = Queries;
+export default Queries;

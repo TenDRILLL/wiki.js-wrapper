@@ -1,15 +1,20 @@
-import pageManager from "./PageManager";
+import PageManager from "./PageManager";
 import APIRequest from "./APIRequest";
 
 class Client {
+    private ready: boolean;
+    private pages: PageManager;
+    private APIRequest: APIRequest;
+    private token: string;
+    private baseURL: string;
     constructor(params) {
         this._validateParameters(params);
         this.ready = false;
-        this.pages = new pageManager(this);
+        this.pages = new PageManager(this);
         this.APIRequest = new APIRequest(this);
     }
 
-    _validateParameters(params = {}) {
+    _validateParameters(params = { token: false, baseURL: false }) {
         if (!params.token || typeof params.token !== "string") throw new Error("INVALID_TOKEN");
         this.token = params.token;
         if (!params.baseURL || typeof params.baseURL !== "string") throw new Error("INVALID_BASEURL");

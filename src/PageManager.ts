@@ -1,6 +1,8 @@
 import Queries from "./Queries";
+import { Client } from "../types";
 
 class PageManager {
+    private client: Client;
     constructor(client) {
         this.client = client;
     }
@@ -51,4 +53,4 @@ class PageManager {
     }
 }
 
-module.exports = PageManager;
+export default PageManager;
