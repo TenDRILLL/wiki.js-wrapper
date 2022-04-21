@@ -1,8 +1,10 @@
 import { Client } from "../types";
+import * as http from "http";
+import * as https from "https";
 
 class APIRequest {
     private client: Client;
-    private httpModule: any;
+    private httpModule: typeof http | typeof https;
     constructor(client) {
         this.client = client;
     }
@@ -54,7 +56,7 @@ class APIRequest {
         let url = this.client.baseURL;
         url = url.split("://");
         const port = url.shift() === "https" ? 443 : 80;
-        this.httpModule = port === 443 ? require("https") : require("http");
+        this.httpModule = port === 443 ? https : http;
         url = url.join("").split("/");
         const host = url[0];
         const path = `/${url[1]}${query ?? ""}`;
