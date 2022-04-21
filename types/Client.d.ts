@@ -1,6 +1,9 @@
 import PageManager from "./PageManager";
 
 export default class Client {
+    baseURL: string;
+    token: string;
+
     constructor(params: {
         /**
          * Your wiki.js website API address, usually ends with /graphql
