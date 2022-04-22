@@ -35,6 +35,8 @@ describe("Login to the API.", () => {
             .reply(200, { errors: [{ message: "Forbidden" }] });
         testOptions.token = "ThisIsAFakeToken";
         testOptions.baseURL = "https://example.com/graphql";
-        expect(new Client(testOptions).login()).rejects.toEqual(Error("Forbidden"));
+        new Client(testOptions).login().catch((e) => {
+            expect(e).toEqual(Error("Forbidden"));
+        });
     });
 });
