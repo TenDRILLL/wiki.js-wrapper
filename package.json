@@ -1,10 +1,11 @@
 {
   "name": "wiki.js-wrapper",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "A wrapper for the Wiki.js API (GraphQL).",
   "scripts": {
     "test": "jest __tests__/ --detectOpenHandles",
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "testbuild": "tsc --build && jest __tests__/ --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -24,14 +25,13 @@
   "homepage": "https://github.com/TenDRILLL/wiki.js-wrapper#readme",
   "devDependencies": {
     "jest": "^27.5.1",
-    "nock": "^13.2.4"
-  },
-  "dependencies": {
+    "nock": "^13.2.4",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.6.2"
-  }
+  },
+  "dependencies": {}
 }
