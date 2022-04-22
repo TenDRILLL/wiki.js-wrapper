@@ -1,6 +1,6 @@
 {
   "name": "wiki.js-wrapper",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A wrapper for the Wiki.js API (GraphQL).",
   "type": "module",
   "scripts": {
