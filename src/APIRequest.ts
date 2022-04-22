@@ -51,8 +51,7 @@ class APIRequest {
     }
 
     getOptions(query, signal) {
-        let url = this.client.baseURL;
-        url = url.split("://");
+        let url = this.client.baseURL.split("://");
         const port = url.shift() === "https" ? 443 : 80;
         this.httpModule = port === 443 ? https : http;
         url = url.join("").split("/");
