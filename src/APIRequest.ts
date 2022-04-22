@@ -1,10 +1,13 @@
 import { Client } from "../types";
 import * as http from "http";
 import * as https from "https";
+import { json } from "stream/consumers";
+import { APIRequestResult } from "../types/Constants";
 
 class APIRequest {
     private client: Client;
     private httpModule: typeof http | typeof https;
+
     constructor(client) {
         this.client = client;
     }
@@ -23,26 +26,21 @@ class APIRequest {
                         reject(new Error("INVALID_BASEURL"));
                     }
                 }
-                let data = "";
-                res.on("data", (chunk) => {
-                    data += chunk;
-                });
-                res.on("end", () => {
-                    try {
-                        data = JSON.parse(data);
-                    } catch (e) {
+                json(res)
+                    .then((data: APIRequestResult) => {
+                        if (data.errors?.length > 0) {
+                            clearTimeout(timeout);
+                            reject(new Error(data.errors[0].message));
+                        }
+                        if (data.data) {
+                            resolve(data);
+                        } else {
+                            reject(new Error("INVALID_RESPONSE"));
+                        }
+                    })
+                    .catch(() => {
                         reject(new Error("DATA_NOT_JSON"));
-                    }
-                    if (data.errors?.length > 0) {
-                        clearTimeout(timeout);
-                        reject(new Error(data.errors[0].message));
-                    }
-                    if (data.data) {
-                        resolve(data);
-                    } else {
-                        reject(new Error("INVALID_RESPONSE"));
-                    }
-                });
+                    });
             });
             request.end();
             const timeout = setTimeout(() => {
