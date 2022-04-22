@@ -2,12 +2,17 @@ import { PageObject, PageSearchResponse } from "./PageManager";
 
 export interface APIRequestResult {
     data: {
-        pages: {
-            single: PageObject;
-            search: PageSearchResponse;
-        };
+        pages: APIRequestResultSingle | APIRequestResultSearch;
     };
     errors: APIError[];
+}
+
+interface APIRequestResultSingle {
+    single: PageObject;
+}
+
+interface APIRequestResultSearch {
+    search: PageSearchResponse;
 }
 
 export interface APIError {

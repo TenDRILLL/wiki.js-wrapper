@@ -12,7 +12,7 @@ class PageManager {
             if (!this.client.isReady()) reject(new Error("CLIENT_NOT_READY"));
             this.client.APIRequest.req(Queries.SinglePageQuery(id))
                 .then((data) => {
-                    if (data.data.pages.single.id) {
+                    if ("single" in data.data.pages && data.data.pages.single.id) {
                         resolve(data.data.pages.single);
                     } else {
                         reject(new Error("INVALID_RESPONSE"));
@@ -40,7 +40,7 @@ class PageManager {
             }
             this.client.APIRequest.req(Queries.SearchPageQuery(searchQuery, path, locale))
                 .then((data) => {
-                    if (data.data.pages.search) {
+                    if ("search" in data.data.pages) {
                         resolve(data.data.pages.search);
                     } else {
                         reject(new Error("INVALID_RESPONSE"));
