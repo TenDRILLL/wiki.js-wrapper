@@ -1,5 +1,12 @@
+import { PageObject, PageSearchResponse } from "./PageManager";
+
 export interface APIRequestResult {
-    data: object;
+    data: {
+        pages: {
+            single: PageObject;
+            search: PageSearchResponse;
+        };
+    };
     errors: APIError[];
 }
 
@@ -35,5 +42,5 @@ export interface LoginResult {
 }
 
 export interface APIRequest {
-    req: void;
+    req: (query: string) => Promise<APIRequestResult>;
 }

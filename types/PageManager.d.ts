@@ -5,7 +5,7 @@ interface PageManagerSearchOptions {
     path?: string;
     locale?: string;
 }
-interface PageObject {
+export interface PageObject {
     id: number;
     path: string;
     hash: string;
@@ -40,7 +40,7 @@ interface PageTag {
     createdAt: string;
     updatedAt: string;
 }
-interface PageSearchResponse {
+export interface PageSearchResponse {
     results: Array<PageSearchResult>;
     suggestions: Array<string>;
     totalHits: number;
