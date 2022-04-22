@@ -1,8 +1,10 @@
 import PageManager from "./PageManager";
+import { APIRequest } from "./Constants";
 
 export default class Client {
     baseURL: string;
     token: string;
+    APIRequest: APIRequest;
 
     constructor(params: {
         /**

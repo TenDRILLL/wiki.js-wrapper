@@ -33,3 +33,7 @@ export interface LoginResult {
         };
     };
 }
+
+export interface APIRequest {
+    req: void;
+}
