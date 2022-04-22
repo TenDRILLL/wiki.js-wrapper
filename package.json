@@ -4,7 +4,8 @@
   "description": "A wrapper for the Wiki.js API (GraphQL).",
   "type": "module",
   "scripts": {
-    "test": "jest __tests__/ --detectOpenHandles"
+    "test": "jest __tests__/ --detectOpenHandles",
+    "build": "tsc --build"
   },
   "repository": {
     "type": "git",
