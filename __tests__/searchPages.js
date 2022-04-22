@@ -1,5 +1,5 @@
-import nock from "nock";
-import Client from "../src/Client";
+const nock = require("nock");
+const Client = require("../build/Client");
 
 const testOptions = {
     baseURL: "https://example.com/graphql",
