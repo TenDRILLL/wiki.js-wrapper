@@ -18,4 +18,5 @@ jobs:
         run: |
           ls
           npm i jest nock
+          npm run build
           npm test
