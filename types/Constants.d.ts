@@ -23,3 +23,13 @@ interface ErrorExtensions {
 interface ErrorExtensionsException {
     stacktrace: string[];
 }
+
+export interface LoginResult {
+    data: {
+        site: {
+            config: {
+                title: string;
+            };
+        };
+    };
+}
