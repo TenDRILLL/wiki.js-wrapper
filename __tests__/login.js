@@ -7,14 +7,16 @@ const testOptions = {
 };
 
 describe("Login to the API.", () => {
-    it("Returns Wiki.js website title.", async () => {
+    it("Returns Wiki.js website title.", () => {
         nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200, { data: { site: { config: { title: "Example" } } } });
-        expect(await new Client(testOptions).login()).toBe("Example");
+        new Client(testOptions).login().then((title) => {
+            expect(title).toBe("Example");
+        });
     });
 
-    it("Returns Wiki.js website title after HTTP redirect.", async () => {
+    it("Returns Wiki.js website title after HTTP redirect.", () => {
         nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200, { data: { site: { config: { title: "Example" } } } });
@@ -22,15 +24,17 @@ describe("Login to the API.", () => {
             .get("/graphql?query={site{config{title}}}")
             .reply(301, {}, { location: "https://example.com/graphql?query={site{config{title}}}" });
         testOptions.baseURL = "http://example.com/graphql";
-        expect(await new Client(testOptions).login()).toBe("Example");
+        new Client(testOptions).login().then((title) => {
+            expect(title).toBe("Example");
+        });
     });
 
-    it("Fail returning Wiki.js title if token is invalid.", async () => {
+    it("Fail returning Wiki.js title if token is invalid.", () => {
         nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200, { errors: [{ message: "Forbidden" }] });
         testOptions.token = "ThisIsAFakeToken";
         testOptions.baseURL = "https://example.com/graphql";
-        await expect(new Client(testOptions).login()).rejects.toEqual(Error("Forbidden"));
+        expect(new Client(testOptions).login()).rejects.toEqual(Error("Forbidden"));
     });
 });
