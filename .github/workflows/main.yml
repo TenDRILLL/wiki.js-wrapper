@@ -16,7 +16,6 @@ jobs:
 
       - name: Run Test
         run: |
-          ls
+          DEBUG=nock.*
           npm i jest nock
-          npm run build
-          npm test
+          npm run testbuild
