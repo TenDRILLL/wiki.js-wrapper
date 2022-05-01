@@ -25,7 +25,7 @@ describe("Get a page from the API.", () => {
         });
     });
 
-    it("Get a non-existent page.", (done) => {
+    /*it("Get a non-existent page.", (done) => {
         nock("https://example.com")
             .get(
                 "/graphql?query={pages{single(id:420){id,path,hash,title,description,isPrivate,isPublished,privateNS,publishStartDate,publishEndDate,tags{id,tag,title,createdAt,updatedAt},content,render,contentType,createdAt,updatedAt,editor,locale,scriptCss,scriptJs,authorId,authorName,authorEmail,creatorId,creatorName,creatorEmail}}}"
@@ -38,5 +38,5 @@ describe("Get a page from the API.", () => {
                 done();
             });
         });
-    });
+    });*/
 });
