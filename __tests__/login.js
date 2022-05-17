@@ -11,7 +11,7 @@ describe("Login to the API.", () => {
         nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200, { data: { site: { config: { title: "Example" } } } });
-        new Client(testOptions).login().then((title) => {
+        return new Client(testOptions).login().then((title) => {
             expect(title).toBe("Example");
         });
     });
@@ -24,19 +24,19 @@ describe("Login to the API.", () => {
             .get("/graphql?query={site{config{title}}}")
             .reply(301, {}, { location: "https://example.com/graphql?query={site{config{title}}}" });
         testOptions.baseURL = "http://example.com/graphql";
-        new Client(testOptions).login().then((title) => {
+        return new Client(testOptions).login().then((title) => {
             expect(title).toBe("Example");
         });
     });
 
-    /*it("Fail returning Wiki.js title if token is invalid.", () => {
+    it("Fail returning Wiki.js title if token is invalid.", () => {
         nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200, { errors: [{ message: "Forbidden" }] });
         testOptions.token = "ThisIsAFakeToken";
         testOptions.baseURL = "https://example.com/graphql";
-        new Client(testOptions).login().catch((e) => {
+        return new Client(testOptions).login().catch((e) => {
             expect(e).toEqual(Error("Forbidden"));
         });
-    });*/
+    });
 });

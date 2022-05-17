@@ -16,6 +16,5 @@ jobs:
 
       - name: Run Test
         run: |
-          DEBUG=nock.*
           npm i jest nock
           npm run testbuild
