@@ -29,7 +29,7 @@ describe("Login to the API.", () => {
         });
     });
 
-    /*it("Fail returning Wiki.js title if token is invalid.", () => {
+    it("Fail returning Wiki.js title if token is invalid.", () => {
         nock("https://example.com")
             .get("/graphql?query={site{config{title}}}")
             .reply(200, { errors: [{ message: "Forbidden" }] });
@@ -38,5 +38,5 @@ describe("Login to the API.", () => {
         new Client(testOptions).login().catch((e) => {
             expect(e).toEqual(Error("Forbidden"));
         });
-    });*/
+    });
 });
