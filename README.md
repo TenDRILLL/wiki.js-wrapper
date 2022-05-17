@@ -1,9 +1,8 @@
 # wiki.js-wrapper
 ![Tests](https://github.com/TenDRILLL/wiki.js-wrapper/workflows/Tests/badge.svg)
+[![NPM Version](https://img.shields.io/npm/v/wiki.js-wrapper?color=37c6ff&style=plastic)](https://www.npmjs.com/package/wiki.js-wrapper)
 
 A WIP wrapper for the Wiki.js API (GraphQL).
-
-NPM [wiki.js-wrapper](https://www.npmjs.com/package/wiki.js-wrapper)
 
 ## Documentation
 
