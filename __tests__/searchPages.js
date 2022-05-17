@@ -17,7 +17,7 @@ describe("Search the API for a page.", () => {
                 '/graphql?query={pages{search(query:"example"){results{id,title,description,path,locale},suggestions,totalHits}}}'
             )
             .reply(200, { data: { pages: { search: { results: [{ id: "1" }], suggestions: [], totalHits: 1 } } } });
-        client.login().then(() => {
+        return client.login().then(() => {
             client.pages.search("example").then((res) => {
                 expect(res.totalHits).toBe(res.results.length);
             });
@@ -33,7 +33,7 @@ describe("Search the API for a page.", () => {
                 '/graphql?query={pages{search(query:"example",locale:"es"){results{id,title,description,path,locale},suggestions,totalHits}}}'
             )
             .reply(200, { data: { pages: { search: { results: [], suggestions: [], totalHits: 0 } } } });
-        client.login().then(() => {
+        return client.login().then(() => {
             client.pages.search({ query: "example", locale: "es" }).then((res) => {
                 expect(res.totalHits).toBe(res.results.length);
             });
