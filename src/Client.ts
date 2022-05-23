@@ -1,6 +1,7 @@
 import PageManager from "./PageManager";
 import APIRequest from "./APIRequest";
 import { LoginResult } from "../types/Constants";
+import Queries from "./Queries";
 
 class Client {
     private ready: boolean;
@@ -30,7 +31,7 @@ class Client {
 
     login() {
         return new Promise((resolve, reject) => {
-            this.APIRequest.req("?query={site{config{title}}}")
+            this.APIRequest.req(Queries.LoginQuery())
                 .then((data: LoginResult) => {
                     if (data.data.site.config.title) {
                         this._ready();

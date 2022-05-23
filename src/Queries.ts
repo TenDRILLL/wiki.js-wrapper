@@ -8,6 +8,10 @@ class Queries {
             locale ? `,locale:"${locale}"` : ""
         }){results{id,title,description,path,locale},suggestions,totalHits}}}`;
     }
+
+    static LoginQuery() {
+        return `?query={site{config{title}}}`;
+    }
 }
 
 export default Queries;
