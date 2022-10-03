@@ -1,6 +1,6 @@
 {
   "name": "wiki.js-wrapper",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "A wrapper for the Wiki.js API (GraphQL).",
   "scripts": {
     "test": "jest __tests__/ --detectOpenHandles",
